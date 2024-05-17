@@ -2,10 +2,24 @@
 
 import uuid
 from datetime import datetime
+from models import storage
 
 
-class BaseModel():
-    """_summary_
+class BaseModel:
+    
+    """
+    Creating a public attribute of Basemodel
+
+    Attributes:
+        id: assign with an uuid when an instance is created
+        created_at: assign with the current datetime when an
+        instance is created
+        updated_at: assign with the current datetime when an
+        instance is created and updated
+    Args:
+        *args: Gets's a number of undisclosed arguments
+        **kwargs: passes variable-length argument
+        dictionary to a function
     """
     
     def __init__(self, *args, **kwargs):
@@ -23,6 +37,7 @@ class BaseModel():
                 self.id = str(uuid.uuid4())
                 self.created_at = datetime.now()
                 self.updated_at = datetime.now()
+                storage.new(self)
         
     # Printing information for the instance attributes 
     def __str__(self):
@@ -35,6 +50,7 @@ class BaseModel():
     def save(self):
         """ makes updated_at valid to current datetime"""
         updated_at = datetime.now()
+        storage.save()
         
     def to_dict(self):
         """creating an empty dict"""
