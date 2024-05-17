@@ -12,4 +12,5 @@ class State(BaseModel):
     Attributes:
         name: empty string
     """
+    
     name = ""
